@@ -1,5 +1,6 @@
 package com.gear.hotpoom.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,44 +8,49 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gear.hotpoom.dao.BookmarksDAO;
+import com.gear.hotpoom.dao.PhotosDAO;
 import com.gear.hotpoom.dao.PoomsDAO;
+import com.gear.hotpoom.dao.UsersDAO;
+import com.gear.hotpoom.vo.Bookmark;
+import com.gear.hotpoom.vo.Photo;
 import com.gear.hotpoom.vo.Poom;
-import com.gear.hotpoom.util.PaginateUtil;
-import com.gear.hotpoom.vo.PageVO;
 
 @Service
 public class PoomsServiceImpl implements PoomsService{
 
 	@Autowired
 	private PoomsDAO poomsDAO;
-	
-	
-	//hot poom
-	@Override
-	public List<Poom> getListHP() {
-		return poomsDAO.selectListHP();
-	}//getList() end
-	
-	//new poom
-	@Override
-	public List<Poom> getListNP() {
-		return poomsDAO.selectListNP();
-	}//getListNP() end
-	
-	
-	
 	@Autowired
-	private PaginateUtil paginateUtil;
+	private BookmarksDAO bookmarksDAO;
+	@Autowired
+	private PhotosDAO photosDAO;
+	@Autowired
+	private UsersDAO usersDAO;
 	
 	@Override
-	public Map<String, Object> getPoomList(int page, int numPage, int speciesNo, int petCnt, int lowPrice, int highPrice, int sort) {
-		// TODO Auto-generated method stub
+	public Map<String, Object> getCompareCardDetail(int userNo) {
+		
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
-		PageVO pageVO = new PageVO(page, numPage, speciesNo, petCnt, lowPrice, highPrice, sort);
-		map.put("poomList", poomsDAO.selectPoomList(pageVO));
-		int total = poomsDAO.selectPoomListTotal(pageVO);
-		map.put("paginate", paginateUtil.getPaginate(page, total, 5, 5, "/poom"));
+
+		map.put("user", usersDAO.getOneUser(userNo));
+		
+		List<Bookmark> poomNoList = bookmarksDAO.getPoomNo(userNo);
+		List<Poom> poomList = poomsDAO.getPoomCardDetail(userNo);
+
+
+		for(Poom poom : poomList) {
+
+			List<Photo> photoList = photosDAO.getPoomCardPhoto(poom.getNo());
+
+			poom.setPhotoList(photoList);
+			
+		
+		}
+		
+		map.put("pooms",poomList);
+
 		return map;
-	}
 	
+	}
 }

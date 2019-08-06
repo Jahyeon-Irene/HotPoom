@@ -92,7 +92,7 @@ public class PaginateUtil {
 //현재 블록
 		int nowBlock = (int) Math.ceil((double) pageNo / numBlock);
 
-		String paginate = "";
+		String paginate = "<div class='paginate'>";
 
 		if (total != 0) {
 
@@ -142,7 +142,7 @@ public class PaginateUtil {
 
 		} // if end
 
-		paginate += "";
+		paginate += "</div>";
 
 		return paginate;
 	}

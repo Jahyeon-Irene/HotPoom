@@ -9,7 +9,6 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias alias="Address" type="com.gear.hotpoom.vo.Address"/>
 		<typeAlias alias="Bank" type="com.gear.hotpoom.vo.Bank"/>
 		<typeAlias alias="BankAccount" type="com.gear.hotpoom.vo.BankAccount"/>
 		<typeAlias alias="Booking" type="com.gear.hotpoom.vo.Booking"/>
@@ -28,11 +27,9 @@
 		<typeAlias alias="Review" type="com.gear.hotpoom.vo.Review"/>
 		<typeAlias alias="Species" type="com.gear.hotpoom.vo.Species"/>
 		<typeAlias alias="User" type="com.gear.hotpoom.vo.User"/>
-		<typeAlias alias="PageVO" type="com.gear.hotpoom.vo.PageVO"/>
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="com/gear/hotpoom/mapper/address.xml"/>
 		<mapper resource="com/gear/hotpoom/mapper/bank-accounts.xml"/>
 		<mapper resource="com/gear/hotpoom/mapper/banks.xml"/>
 		<mapper resource="com/gear/hotpoom/mapper/bookings.xml"/>

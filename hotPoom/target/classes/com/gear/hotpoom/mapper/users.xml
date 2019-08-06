@@ -4,11 +4,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="users">
 
-	<select id="selectLogin" parameterType="User" resultType="User">
-		SELECT no, name, profile_img profileImg
-		FROM users
-		WHERE email = #{email}
-		AND password = #{password}
-	</select>
+<!-- 0803 주하 start -->
+
+<select id="selectCheckEmail" resultType="int" parameterType="string">
+	SELECT COUNT(*)
+	FROM users
+	WHERE email = #{email}
+</select>
+
+<insert id="insert" parameterType="User">
+	<selectKey order="BEFORE" keyProperty="no" resultType="int">
+		SELECT users_seq.nextval
+		FROM dual
+	</selectKey>
+	INSERT INTO users(no, email, password, name, phone_num, profile_img, gender, birth_date, introduce, regdate)
+	VALUES(#{no}, #{email}, #{password}, #{name}, #{phoneNum}, #{profileImg}, #{gender}, #{birthDate}, #{introduce}, systimestamp)
+</insert>	
+
+<select id="selectOne" parameterType="int" resultType="User">
+	SELECT no, email, password, name, phone_num phoneNum, profile_img profileImg, gender, birth_date birthDate, introduce, regdate 
+	FROM users
+	WHERE no = #{no}
+</select>
+
+<update id="updateName" parameterType="User">
+	UPDATE users
+	SET name = #{name}
+	WHERE no = #{no}
+</update>
+
+<update id="updatePhoneNum" parameterType="User">
+	UPDATE users
+	SET phone_num = #{phoneNum}
+	WHERE no = #{no}
+</update>
 
 </mapper>

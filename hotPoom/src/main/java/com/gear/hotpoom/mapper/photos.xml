@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="photos">
 
+<select id="selectPoomCardPhotoList" parameterType="int" resultType="Photo">
+	SELECT p.img
+	FROM photos p
+	WHERE content_no = #{no}
+	AND type IN ('M','S')
+</select>
 	
 
 </mapper>

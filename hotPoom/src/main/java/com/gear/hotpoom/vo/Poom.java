@@ -3,54 +3,75 @@ package com.gear.hotpoom.vo;
 import java.sql.Timestamp;
 import java.util.List;
 
+
+
+
 public class Poom {
-	private int no, userNo, speciesNo, price, petCnt, count;
-	private String type, title, checkIn, checkOut, introduce, amenity, mainAddress, subAddress, postNum, phoneNum, transport, img, petName;
-	private double score;
+	private int no, userNo, speciesNo, price, petCnt;
+	//************************************************ 0804 주하 추가
+
 	private double lat, lng;
-	private List<Photo> poomPhotos;
+	private String type, title, checkIn, checkOut, introduce, amenity, mainAddress, subAddress, postNum, phoneNum, transport,
+	//************************************************ 0804 주하 추가
+	speciesName, reviewScore, reviewCnt;
 	private Timestamp regdate;
+	// *********************************************** 0805 주하
+	private List<Photo> photoList;
 	
 	public Poom() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public double getLat() {
-		return lat;
-	}
-
-	public void setLat(double lat) {
-		this.lat = lat;
-	}
-
-	public double getLng() {
-		return lng;
-	}
-
-	public void setLng(double lng) {
-		this.lng = lng;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-	public List<Photo> getPoomPhotos() {
-		return poomPhotos;
-	}
-
-	public void setPoomPhotos(List<Photo> poomPhotos) {
-		this.poomPhotos = poomPhotos;
+	
+	public List<Photo> getPhotoList() {
+		return photoList;
 	}
 
 
-	public void setScore(int score) {
-		this.score = score;
+
+
+	public void setPhotoList(List<Photo> photoList) {
+		this.photoList = photoList;
 	}
+
+
+
+
+	public String getSpeciesName() {
+		return speciesName;
+	}
+
+
+
+	public void setSpeciesName(String speciesName) {
+		this.speciesName = speciesName;
+	}
+
+
+
+	public String getReviewScore() {
+		return reviewScore;
+	}
+
+
+
+	public void setReviewScore(String reviewScore) {
+		this.reviewScore = reviewScore;
+	}
+
+
+
+	public String getReviewCnt() {
+		return reviewCnt;
+	}
+
+
+
+	public void setReviewCnt(String reviewCnt) {
+		this.reviewCnt = reviewCnt;
+	}
+
+
 
 	public int getNo() {
 		return no;
@@ -91,6 +112,27 @@ public class Poom {
 	public void setPetCnt(int petCnt) {
 		this.petCnt = petCnt;
 	}
+
+
+	public double getLat() {
+		return lat;
+	}
+
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+
+	public double getLng() {
+		return lng;
+	}
+
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
 
 	public String getType() {
 		return type;
@@ -187,29 +229,5 @@ public class Poom {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
-
-	public double getScore() {
-		return score;
-	}
-
-	public void setScore(double score) {
-		this.score = score;
-	}
-
-	public String getPetName() {
-		return petName;
-	}
-
-	public void setPetName(String petName) {
-		this.petName = petName;
-	}
-
+	
 }

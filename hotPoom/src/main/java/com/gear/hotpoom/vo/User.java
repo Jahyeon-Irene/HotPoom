@@ -4,7 +4,8 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class User {
-	private int no;
+	// *********************************************************** 0806 주하
+	private int no, roomNo;
 	private String email, password, name, phoneNum, profileImg, gender, introduce;
 	private Date birthDate;
 	private Timestamp regdate;
@@ -12,6 +13,21 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+
+
+	public int getRoomNo() {
+		return roomNo;
+	}
+
+
+
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
+	}
+
+
 
 	public int getNo() {
 		return no;
